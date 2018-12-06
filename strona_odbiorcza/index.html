@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <title>M Grudzień - odbiór</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="HTML,CSS,PHP,JavaScript,learning">
+	<meta name="author" content="Mateusz Grudzień">
+	<meta name="description" content="Strona napisana podczas zajęć z Aplikacji Internetowych.">
+	<meta http-equiv="refresh" content="60"> <!-- Autoodświerzanie co 60 sekund -->
+	
+	<link rel="icon" href="img/ikona.png" type="image/x-icon">
+	<link rel="stylesheet" href="style.css">
+
+	<?php
+        $data = file_get_contents('ftp://USER:PASSWORD@ftpupload.net/htdocs/data/data.txt');
+		$j = 0;
+		$tmp = "";
+		
+		if(strlen($data) <= 0)
+		{
+			$data = "0:0:0:0:0:0:0:0:";
+		}
+		
+		for($i = 0; $i < strlen($data); $i++)
+		{
+			if($j < 4)
+			{
+				if($data[$i] == ":")
+				{
+					$temp[$j] = $tmp;
+					$tmp = "";
+					$j++;
+				}
+				else
+				{
+					$tmp = $tmp . $data[$i];
+				}
+			}
+			else
+			{
+				if($data[$i] == ":")
+				{
+					$core[$j-4] = $tmp;
+					$tmp = "";
+					$j++;
+				}
+				else
+				{
+					$tmp = $tmp . $data[$i];
+				}
+			}
+		}
+		
+		for($i = 0; $i < 4; $i++)
+		{
+			if($temp[i] > 100)
+			{
+				$temp[i] = 100;
+			}
+			elseif($temp[i] < 0)
+			{
+				$temp[i] = 0;
+			}
+			
+			if($core[i] > 100)
+			{
+				$core[i] = 100;
+			}
+			elseif($core[i] < 0)
+			{
+				$core[i] = 0;
+			}
+		}
+    ?> 
+</head>
+
+<body>  
+    <div id="left_half">
+        <div id="first_layer">
+            <h3> Dane - graficznie </h3>
+            <div id="second_layer">
+                <div id="core_TL">
+                    <div id="core_img">
+                        <h5> Rdzeń 1  </h5>
+                    </div>
+                    <div id="temp_img">
+						<div id="temp_img_inner">
+							<img src="img/temp.jpg" alt="Image not found" height="210" width="50">  
+							<?php
+								echo '<div id="temp_pipe" style = "height: ' . $temp[0]*1.45 . 'px;"> </div>'
+							?>
+						</div>
+                    </div>
+                    <div id="usage_img">
+						<div id="usage_img_upper">
+							<font color="lightgreen"> 100% </font>
+						</div>
+						<div id="usage_img_inner">
+							<?php
+								for($i = 0; $i*10 < $core[0]; $i++)
+								{
+									echo '<div id="usage_block" style="bottom: ' . (string)($i*16) . 'px;"> </div>';
+								}
+							?>
+						</div>
+						<div id="usage_img_lower">
+							<font color="lightgreen"> 0% </font>
+						</div>
+                    </div>
+                </div>
+                <div id="core_TR">
+                    <div id="core_img">
+                        <h5> Rdzeń 2  </h5>
+                    </div>
+                    <div id="temp_img">
+						<div id="temp_img_inner">
+							<img src="img/temp.jpg" alt="Image not found" height="210" width="50">  
+							<?php
+								echo '<div id="temp_pipe" style = "height: ' . $temp[1]*1.45 . 'px;"> </div>'
+							?>
+						</div>
+                    </div>
+                    <div id="usage_img">
+                        <div id="usage_img_upper">
+							<font color="lightgreen"> 100% </font>
+						</div>
+						<div id="usage_img_inner">
+							<?php
+								for($i = 0; $i*10 < $core[1]; $i++)
+								{
+									echo '<div id="usage_block" style="bottom: ' . (string)($i*16) . 'px;"> </div>';
+								}
+							?>
+						</div>
+						<div id="usage_img_lower">
+							<font color="lightgreen"> 0% </font>
+						</div>
+                    </div>
+                </div>
+                <div id="core_BL">
+                    <div id="core_img">
+                        <h5> Rdzeń 3  </h5>
+                    </div>
+                    <div id="temp_img">
+						<div id="temp_img_inner">
+							<img src="img/temp.jpg" alt="Image not found" height="210" width="50">  
+							<?php
+								echo '<div id="temp_pipe" style = "height: ' . $temp[2]*1.45 . 'px;"> </div>'
+							?>
+						</div>
+                    </div>
+                    <div id="usage_img">
+                        <div id="usage_img_upper">
+							<font color="lightgreen"> 100% </font>
+						</div>
+						<div id="usage_img_inner">
+							<?php
+								for($i = 0; $i*10 < $core[2]; $i++)
+								{
+									echo '<div id="usage_block" style="bottom: ' . (string)($i*16) . 'px;"> </div>';
+								}
+							?>
+						</div>
+						<div id="usage_img_lower">
+							<font color="lightgreen"> 0% </font>
+						</div>
+                    </div>
+                </div>
+                <div id="core_BR">
+                    <div id="core_img">
+                        <h5> Rdzeń 4  </h5>
+                    </div>
+                    <div id="temp_img">
+						<div id="temp_img_inner">
+							<img src="img/temp.jpg" alt="Image not found" height="210" width="50">  
+							<?php
+								echo '<div id="temp_pipe" style = "height: ' . $temp[3]*1.45 . 'px;"> </div>'
+							?>
+						</div>
+                    </div>
+                    <div id="usage_img">
+                        <div id="usage_img_upper">
+							<font color="lightgreen"> 100% </font>
+						</div>
+						<div id="usage_img_inner">
+							<?php
+								for($i = 0; $i*10 < $core[3]; $i++)
+								{
+									echo '<div id="usage_block" style="bottom: ' . (string)($i*16) . 'px;"> </div>';
+								}
+							?>
+						</div>
+						<div id="usage_img_lower">
+							<font color="lightgreen"> 0% </font>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="right_half">
+        <div id="first_layer">
+            <h3> Dane - tekstowo </h3>
+            <table>
+            <tr>
+                <th> </th>
+                <th> Rdzeń 1 </th>
+                <th> Rdzeń 2 </th>
+                <th> Rdzeń 3 </th>
+                <th> Rdzeń 4 </th>
+            </tr>
+            <tr>
+                <th> Temperatura </th>
+                <td> <?php echo $temp[0]; ?>°C </td>
+                <td> <?php echo $temp[1]; ?>°C </td>
+                <td> <?php echo $temp[2]; ?>°C </td>
+                <td> <?php echo $temp[3]; ?>°C </td>
+            </tr>
+            <tr>
+                <th> Użycie </th>
+                <td> <?php echo $core[0]; ?>% </td>
+                <td> <?php echo $core[1]; ?>% </td>
+                <td> <?php echo $core[2]; ?>% </td>
+                <td> <?php echo $core[3]; ?>% </td>
+            </tr>
+            </table>
+        </div>
+    </div> 
+</body>
+</html>
