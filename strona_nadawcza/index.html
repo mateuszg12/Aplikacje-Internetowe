@@ -1,0 +1,89 @@
+﻿﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>M Grudzień - nastaw</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="HTML,CSS,PHP,JavaScript,learning">
+	<meta name="author" content="Mateusz Grudzień">
+	<meta name="description" content="Strona napisana podczas zajęć z Aplikacji Internetowych.">
+	
+	<link rel="icon" href="img/ikona.png" type="image/x-icon">
+	<link rel="stylesheet" href="style.css">
+	
+    <?php
+        $data = file_get_contents('data/data.txt');
+		$j = 0;
+		$tmp = "";
+		
+		for($i = 0; $i < strlen($data); $i++)
+		{
+			if($j < 4)
+			{
+				if($data[$i] == ":")
+				{
+					$temp[$j] = $tmp;
+					$tmp = "";
+					$j++;
+				}
+				else
+				{
+					$tmp = $tmp . $data[$i];
+				}
+			}
+			else
+			{
+				if($data[$i] == ":")
+				{
+					$core[$j-4] = $tmp;
+					$tmp = "";
+					$j++;
+				}
+				else
+				{
+					$tmp = $tmp . $data[$i];
+				}
+			}
+		}
+    ?> 
+</head>
+
+<body style="background-color:white;"> 
+	<div id="left_half">
+		<div id="first_layer">
+			<h2 align=center> Zmiana danych </h2>
+			
+			<form action="process_temp.php">
+				  Temperatura rdzenia 1: <?php echo $temp[0]; ?> <br>
+				  <?php echo '<input type="text" name="temp_1" value="' . $temp[0] . '"><br>'; ?>
+				  Temperatura rdzenia 2: <?php echo $temp[1]; ?> <br>
+				  <?php echo '<input type="text" name="temp_2" value="' . $temp[1] . '"><br>'; ?>
+				  Temperatura rdzenia 3: <?php echo $temp[2]; ?> <br>
+				  <?php echo '<input type="text" name="temp_3" value="' . $temp[2] . '"><br>'; ?>
+				  Temperatura rdzenia 4: <?php echo $temp[3]; ?> <br>
+				  <?php echo '<input type="text" name="temp_4" value="' . $temp[3] . '"><br>'; ?>
+				  <input type="submit" value="Wgraj nowe dane">
+			</form>  
+		</div>
+	</div>
+	<div id="right_half">
+		<div id="first_layer">
+			<h2 align=center> Zmiana danych </h2>
+			
+			<form action="process_core.php">
+				  Wykorzystanie rdzenia 1: <?php echo $core[0]; ?> <br>
+				  <?php echo '<input type="text" name="core_1" value="' . $core[0] . '"><br>'; ?>
+				  Wykorzystanie rdzenia 2: <?php echo $core[1]; ?> <br>
+				  <?php echo '<input type="text" name="core_2" value="' . $core[1] . '"><br>'; ?>
+				  Wykorzystanie rdzenia 3: <?php echo $core[2]; ?> <br>
+				  <?php echo '<input type="text" name="core_3" value="' . $core[2] . '"><br>'; ?>
+				  Wykorzystanie rdzenia 4: <?php echo $core[3]; ?> <br>
+				  <?php echo '<input type="text" name="core_4" value="' . $core[3] . '"><br>'; ?>
+				  <input type="submit" value="Wgraj nowe dane">
+			</form> 
+		</div>
+	</div>
+</body>
+</html>
