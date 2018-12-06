@@ -1,0 +1,36 @@
+body
+{
+	background-color:white;
+}
+
+#left_half
+{
+	height: 100%; 
+	width: 50%; 
+	position: fixed; 
+	top: 0; 
+	left: 0; 
+	border: 2px solid black;
+}
+
+#right_half
+{
+	height: 100%;  
+	width: 50%; 
+	position: fixed; 
+	top: 0; 
+	right: 0; 
+	border: 2px solid black;
+}
+
+#first_layer
+{
+	height: 80%; 
+	width: 50%; 
+	position: absolute; 
+	top: 10%;  
+	left: 25%;  
+	text-align: center; 
+	background-color: green;
+}
+
